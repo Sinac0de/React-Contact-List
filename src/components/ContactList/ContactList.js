@@ -1,42 +1,30 @@
 import styles from "./contactList.module.css";
-import { FaUserCircle } from "react-icons/fa";
-import { IconContext } from "react-icons";
 import { Link } from "react-router-dom";
+import Contact from "./Contact/Contact";
 
 const ContactList = ({ contacts, removeContact }) => {
   return (
-    <>
-      <div>
+    <section>
+      {/* header */}
+      <div className={styles.listHeader}>
         <h2>Contacts</h2>
         <Link to="/add-contact">
           <button className={styles.addContactBtn}>Add a new contact</button>
         </Link>
       </div>
-      <ul className={styles.contactList}>
+      {/* contact list */}
+      <div className={styles.contactList}>
         {contacts.map((contact) => {
-          const { id, name, email } = contact;
           return (
-            <li key={id} className={styles.contact}>
-              <div className={styles.contactInfo}>
-                <IconContext.Provider value={{ color: "blue", size: "50px" }}>
-                  <FaUserCircle />
-                </IconContext.Provider>
-                <div className={styles.contactInfoText}>
-                  <p>{name}</p>
-                  <p>{email}</p>
-                </div>
-              </div>
-              <button
-                className={styles.removeContactBtn}
-                onClick={() => removeContact(id)}
-              >
-                delete
-              </button>
-            </li>
+            <Contact
+              key={contact.id}
+              contact={contact}
+              removeContact={removeContact}
+            />
           );
         })}
-      </ul>
-    </>
+      </div>
+    </section>
   );
 };
 
