@@ -3,3 +3,9 @@
   min-height: 100vh;
   text-align: center;
 }
+
+.App h1 {
+  border-bottom: 1px solid #ccc;
+  padding: 0.3em;
+  margin-bottom: 0.5em;
+}
