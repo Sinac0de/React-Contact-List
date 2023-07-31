@@ -36,3 +36,14 @@
   padding: 0.2em 1em;
   border-radius: 15px;
 }
+
+.addContactBtn {
+  border: 3px solid rgb(144, 85, 255);
+  background-color: white;
+  color: rgb(144, 85, 255);
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0.2em 1em;
+  border-radius: 15px;
+  margin: 0.5em 0;
+}
