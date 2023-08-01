@@ -14,7 +14,7 @@ function App() {
   const addContactHandler = async (contact) => {
     try {
       const { data } = await addContact(contact);
-      setContacts([...contacts, { ...contact, data }]);
+      setContacts([...contacts, { ...contact, ...data }]);
     } catch (error) {
       console.log(error);
     }
@@ -31,19 +31,6 @@ function App() {
     }
   };
 
-  // useEffect(() => {
-  //   const getContacts = async () => {
-  //     const { data } = await http.get("/contacts");
-  //     setContacts(data);
-  //   };
-
-  //   try {
-  //     getContacts();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, []);
-
   useEffect(() => {
     const getContacts = async () => {
       const { data } = await http.get("/contacts");
@@ -55,7 +42,7 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-  }, [contacts]);
+  }, []);
 
   return (
     <main className="App">
