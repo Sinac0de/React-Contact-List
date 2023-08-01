@@ -1,0 +1,38 @@
+form {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.formControl {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  margin-top: 10px;
+  align-items: start;
+}
+
+.formControl input {
+  width: 100%;
+  padding: 0.5em;
+  border-radius: 5px;
+  outline: 1px solid #ccc;
+  border: 1px solid #ccc;
+}
+
+.formControl input:focus {
+  outline: 1px solid #7c3aed;
+  border: 1px solid #7c3aed;
+}
+
+.editContactBtn {
+  margin-top: 1em;
+  background-color: #7c3aed;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.8em;
+  cursor: pointer;
+  font-weight: bold;
+}
