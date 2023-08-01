@@ -4,27 +4,57 @@ import AddContact from "./components/AddContact/AddContact";
 import ContactList from "./components/ContactList/ContactList";
 import { Route, Routes } from "react-router-dom";
 import ContactDetails from "./components/ContactDetails/ContactDetails";
+import http from "./services/httpServices";
+import deleteContact from "./services/deleteContactService";
+import addContact from "./services/AddContactService";
 
 function App() {
   const [contacts, setContacts] = useState([]);
-  const addContactHandler = (contact) => {
-    setContacts([...contacts, { ...contact, id: Date.now() }]);
-  };
 
-  const handleRemoveContact = (id) => {
-    const filteredContacts = contacts.filter((contact) => contact.id !== id);
-    setContacts(filteredContacts);
-  };
-
-  useEffect(() => {
-    const savedContacts = JSON.parse(localStorage.getItem("contacts"));
-    if (savedContacts) {
-      setContacts(savedContacts);
+  const addContactHandler = async (contact) => {
+    try {
+      const { data } = await addContact(contact);
+      setContacts([...contacts, { ...contact, data }]);
+    } catch (error) {
+      console.log(error);
     }
-  }, []);
+  };
+
+  const handleRemoveContact = async (id) => {
+    try {
+      console.log(id);
+      await deleteContact(id);
+      const filteredContacts = contacts.filter((contact) => contact.id !== id);
+      setContacts(filteredContacts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // useEffect(() => {
+  //   const getContacts = async () => {
+  //     const { data } = await http.get("/contacts");
+  //     setContacts(data);
+  //   };
+
+  //   try {
+  //     getContacts();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
 
   useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
+    const getContacts = async () => {
+      const { data } = await http.get("/contacts");
+      setContacts(data);
+    };
+
+    try {
+      getContacts();
+    } catch (error) {
+      console.log(error);
+    }
   }, [contacts]);
 
   return (
