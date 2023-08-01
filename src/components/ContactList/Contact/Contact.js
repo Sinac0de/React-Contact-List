@@ -9,7 +9,7 @@ const Contact = ({ contact, removeContact }) => {
   return (
     <div key={id} className={styles.contact}>
       <Link
-        to={`user/${id}`}
+        to={`contact-info/${id}`}
         state={{ contact }}
         className={styles.contactInfo}
       >
@@ -21,11 +21,12 @@ const Contact = ({ contact, removeContact }) => {
           <p>{email}</p>
         </div>
       </Link>
+      <Link to={`/edit-contact/${id}`}>Edit</Link>
       <button
         className={styles.removeContactBtn}
         onClick={() => removeContact(id)}
       >
-        delete
+        Delete
       </button>
     </div>
   );
