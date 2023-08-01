@@ -1,7 +1,7 @@
 import http from "./httpServices";
 
-const getContacts = () => {
-  return http.get("/contacts");
+const addContact = (contact) => {
+  return http.post("/contacts", contact);
 };
 
-export default getContacts;
+export default addContact;
