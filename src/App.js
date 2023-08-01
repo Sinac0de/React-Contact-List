@@ -7,6 +7,7 @@ import ContactDetails from "./components/ContactDetails/ContactDetails";
 import http from "./services/httpServices";
 import deleteContact from "./services/deleteContactService";
 import addContact from "./services/AddContactService";
+import EditContact from "./components/EditContact/EditContact";
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -22,7 +23,6 @@ function App() {
 
   const handleRemoveContact = async (id) => {
     try {
-      console.log(id);
       await deleteContact(id);
       const filteredContacts = contacts.filter((contact) => contact.id !== id);
       setContacts(filteredContacts);
@@ -48,7 +48,8 @@ function App() {
     <main className="App">
       <h1>Contact List App</h1>
       <Routes>
-        <Route path="/user/:id" element={<ContactDetails />} />
+        <Route path="/edit-contact/:id" element={<EditContact />} />
+        <Route path="/contact-info/:id" element={<ContactDetails />} />
         <Route
           path="/add-contact"
           element={<AddContact addContactHandler={addContactHandler} />}
