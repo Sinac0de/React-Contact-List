@@ -13,7 +13,9 @@ const Contact = ({ contact, removeContact }) => {
         state={{ contact }}
         className={styles.contactInfo}
       >
-        <IconContext.Provider value={{ color: "blue", size: "50px" }}>
+        <IconContext.Provider
+          value={{ color: "rgb(124, 112, 255)", size: "45px" }}
+        >
           <FaUserCircle />
         </IconContext.Provider>
         <div className={styles.contactInfoText}>
@@ -21,13 +23,17 @@ const Contact = ({ contact, removeContact }) => {
           <p>{email}</p>
         </div>
       </Link>
-      <Link to={`/edit-contact/${id}`}>Edit</Link>
-      <button
-        className={styles.removeContactBtn}
-        onClick={() => removeContact(id)}
-      >
-        Delete
-      </button>
+      <div className={styles.contactBtns}>
+        <Link to={`/edit-contact/${id}`} className={styles.link}>
+          <button className={styles.editContactBtn}>Edit</button>
+        </Link>
+        <button
+          className={styles.removeContactBtn}
+          onClick={() => removeContact(id)}
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 };

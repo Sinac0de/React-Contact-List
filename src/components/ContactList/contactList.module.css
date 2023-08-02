@@ -47,12 +47,40 @@
   font-weight: bold;
 }
 
+.contactBtns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
 .removeContactBtn {
+  height: fit-content;
   border: 3px solid rgb(255, 79, 79);
   background-color: white;
   color: rgb(255, 79, 79);
   cursor: pointer;
+  font-size: 13px;
   font-weight: bold;
-  padding: 0.2em 1em;
-  border-radius: 15px;
+  padding: 0.5em 1em;
+  border-radius: 10px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.editContactBtn {
+  height: fit-content;
+  border: 3px solid rgb(124, 112, 255);
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 13px;
+  color: rgb(124, 112, 255);
+  cursor: pointer;
+  padding: 0.5em 1em;
+  border-radius: 10px;
 }
