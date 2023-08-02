@@ -8,6 +8,8 @@ import http from "./services/httpServices";
 import deleteContact from "./services/deleteContactService";
 import addContact from "./services/AddContactService";
 import EditContact from "./components/EditContact/EditContact";
+import updateContact from "./services/updateContact";
+import getContacts from "./services/getContactsService";
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -16,6 +18,16 @@ function App() {
     try {
       const { data } = await addContact(contact);
       setContacts([...contacts, { ...contact, ...data }]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const editContactHandler = async (id, contact) => {
+    try {
+      await updateContact(id, contact);
+      const { data } = await getContacts();
+      setContacts(data);
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +60,10 @@ function App() {
     <main className="App">
       <h1>Contact List App</h1>
       <Routes>
-        <Route path="/edit-contact/:id" element={<EditContact />} />
+        <Route
+          path="/edit-contact/:id"
+          element={<EditContact editContactHandler={editContactHandler} />}
+        />
         <Route path="/contact-info/:id" element={<ContactDetails />} />
         <Route
           path="/add-contact"
