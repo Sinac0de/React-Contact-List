@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./addContact.module.css";
 import { useState } from "react";
+import addContact from "../../services/AddContactService";
 
-const AddContact = ({ addContactHandler }) => {
+const AddContact = () => {
   const [contact, setContact] = useState({ name: "", email: "" });
   const navigate = useNavigate();
 
@@ -10,15 +11,19 @@ const AddContact = ({ addContactHandler }) => {
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!contact.name || !contact.email) {
       alert("All the inputs are mandatory!");
       return;
     }
-    addContactHandler(contact);
-    setContact({ name: "", email: "" });
-    navigate("/");
+    try {
+      await addContact(contact);
+      setContact({ name: "", email: "" });
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

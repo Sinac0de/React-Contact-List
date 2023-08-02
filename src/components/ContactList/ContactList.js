@@ -1,8 +1,36 @@
 import styles from "./contactList.module.css";
 import { Link } from "react-router-dom";
 import Contact from "./Contact/Contact";
+import { useEffect, useState } from "react";
+import deleteContact from "../../services/deleteContactService";
+import http from "../../services/httpServices";
 
-const ContactList = ({ contacts, removeContact }) => {
+const ContactList = () => {
+  const [contacts, setContacts] = useState(null);
+
+  useEffect(() => {
+    const getContacts = async () => {
+      const { data } = await http.get("/contacts");
+      setContacts(data);
+    };
+
+    try {
+      getContacts();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  const handleRemoveContact = async (id) => {
+    try {
+      await deleteContact(id);
+      const filteredContacts = contacts.filter((contact) => contact.id !== id);
+      setContacts(filteredContacts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section>
       {/* header */}
@@ -14,15 +42,19 @@ const ContactList = ({ contacts, removeContact }) => {
       </div>
       {/* contact list */}
       <div className={styles.contactList}>
-        {contacts.map((contact) => {
-          return (
-            <Contact
-              key={contact.id}
-              contact={contact}
-              removeContact={removeContact}
-            />
-          );
-        })}
+        {contacts ? (
+          contacts.map((contact) => {
+            return (
+              <Contact
+                key={contact.id}
+                contact={contact}
+                removeContact={handleRemoveContact}
+              />
+            );
+          })
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
     </section>
   );

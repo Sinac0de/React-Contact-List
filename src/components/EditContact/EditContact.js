@@ -2,8 +2,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import styles from "./editContact.module.css";
 import { useEffect, useState } from "react";
 import getOneContact from "../../services/getOneContact";
+import updateContact from "../../services/updateContact";
 
-const EditContact = ({ editContactHandler }) => {
+const EditContact = () => {
   const [contact, setContact] = useState({ name: "", email: "" });
   const navigate = useNavigate();
 
@@ -14,16 +15,21 @@ const EditContact = ({ editContactHandler }) => {
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!contact.name || !contact.email) {
       alert("All the inputs are mandatory!");
       return;
     }
-    editContactHandler(contactId, contact);
-    // reset the state and send back to homepage
-    setContact({ name: "", email: "" });
-    navigate("/");
+    //put the data to the database
+    try {
+      await updateContact(contactId, contact);
+
+      // reset the state and send back to homepage
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
