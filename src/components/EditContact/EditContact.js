@@ -20,7 +20,7 @@ const EditContact = ({ editContactHandler }) => {
       alert("All the inputs are mandatory!");
       return;
     }
-    editContactHandler(contact);
+    editContactHandler(contactId, contact);
     // reset the state and send back to homepage
     setContact({ name: "", email: "" });
     navigate("/");
