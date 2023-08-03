@@ -3,6 +3,7 @@ import styles from "./editContact.module.css";
 import { useEffect, useState } from "react";
 import getOneContact from "../../services/getOneContact";
 import updateContact from "../../services/updateContact";
+import { Link } from "react-router-dom";
 
 const EditContact = () => {
   const [contact, setContact] = useState({ name: "", email: "" });
@@ -49,7 +50,7 @@ const EditContact = () => {
   return (
     <>
       <h2>Edit the contact info</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formControl}>
           <label htmlFor="name">Name</label>
           <input
@@ -73,6 +74,9 @@ const EditContact = () => {
         <button type="submit" className={styles.editContactBtn}>
           Edit Contact
         </button>
+        <Link to="/" className={styles.cancelLink}>
+          <button className={styles.cancelBtn}>Cancel</button>
+        </Link>
       </form>
     </>
   );

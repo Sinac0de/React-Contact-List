@@ -59,7 +59,7 @@ const ContactList = () => {
           <button className={styles.addContactBtn}>Add a new contact</button>
         </Link>
       </div>
-      <form role="search">
+      <form role="search" className={styles.searchBarContainer}>
         <input
           type="search"
           placeholder="Search contacts..."

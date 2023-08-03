@@ -26,13 +26,29 @@ form {
   border: 1px solid #7c3aed;
 }
 
-.editContactBtn {
-  margin-top: 1em;
-  background-color: #7c3aed;
+.editContactBtn,
+.cancelBtn {
+  width: 100%;
   color: white;
   border: none;
   border-radius: 5px;
   padding: 0.8em;
   cursor: pointer;
   font-weight: bold;
+}
+
+.editContactBtn {
+  background-color: #7c3aed;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.cancelBtn {
+  background-color: rgb(255, 79, 79);
+}
+
+@media screen and (max-width: 540px) {
+  .form {
+    width: 90%;
+  }
 }

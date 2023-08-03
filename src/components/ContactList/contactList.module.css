@@ -96,3 +96,36 @@
   padding: 0.5em 1em;
   border-radius: 10px;
 }
+
+@media screen and (max-width: 540px) {
+  .listHeader {
+    width: 90%;
+  }
+
+  .contactList {
+    width: 90%;
+  }
+
+  .contactInfo {
+    flex: 1;
+    word-wrap: break-word;
+  }
+
+  .contactInfoText {
+    font-size: 1rem;
+  }
+
+  .contactBtns {
+    flex-direction: column;
+  }
+
+  .editContactBtn,
+  .removeContactBtn {
+    width: 50px;
+    font-size: 10px;
+  }
+
+  .searchBarContainer {
+    width: 90%;
+  }
+}

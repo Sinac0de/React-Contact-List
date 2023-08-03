@@ -10,3 +10,9 @@
   padding: 0.3em;
   margin-bottom: 0.5em;
 }
+
+@media screen and (max-width: 540px) {
+  .App h1 {
+    width: 100%;
+  }
+}
