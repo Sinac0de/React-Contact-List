@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./addContact.module.css";
 import { useState } from "react";
 import addContact from "../../services/AddContactService";
@@ -29,7 +29,7 @@ const AddContact = () => {
   return (
     <>
       <h2>Add a new contact</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formControl}>
           <label htmlFor="name">Name</label>
           <input
@@ -53,6 +53,9 @@ const AddContact = () => {
         <button type="submit" className={styles.addContactBtn}>
           Add Contact
         </button>
+        <Link to="/" className={styles.cancelLink}>
+          <button className={styles.cancelBtn}>Cancel</button>
+        </Link>
       </form>
     </>
   );
