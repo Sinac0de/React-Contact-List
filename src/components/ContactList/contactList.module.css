@@ -17,6 +17,18 @@
   margin: 0.5em 0;
 }
 
+.searchInput {
+  padding: 0.5em;
+  border: none;
+  outline: 1px solid #ccc;
+  border-radius: 10px;
+  margin-top: 0.5em;
+}
+
+.searchInput:focus {
+  outline: 2px solid rgb(144, 85, 255);
+}
+
 .contactList {
   display: flex;
   flex-direction: column;

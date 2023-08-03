@@ -7,11 +7,14 @@ import http from "../../services/httpServices";
 
 const ContactList = () => {
   const [contacts, setContacts] = useState(null);
+  const [allContacts, setAllContacts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const getContacts = async () => {
       const { data } = await http.get("/contacts");
       setContacts(data);
+      setAllContacts(data);
     };
 
     try {
@@ -31,6 +34,22 @@ const ContactList = () => {
     }
   };
 
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+    const search = e.target.value;
+    if (search !== "") {
+      const filterContacts = allContacts.filter((c) => {
+        return Object.values(c)
+          .join(" ")
+          .toLowerCase()
+          .includes(search.toLowerCase());
+      });
+      setContacts(filterContacts);
+    } else {
+      setContacts(allContacts);
+    }
+  };
+
   return (
     <section>
       {/* header */}
@@ -40,6 +59,15 @@ const ContactList = () => {
           <button className={styles.addContactBtn}>Add a new contact</button>
         </Link>
       </div>
+      <form role="search">
+        <input
+          type="search"
+          placeholder="Search contacts..."
+          className={styles.searchInput}
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </form>
       {/* contact list */}
       <div className={styles.contactList}>
         {contacts ? (
